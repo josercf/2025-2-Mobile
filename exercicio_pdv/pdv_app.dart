@@ -32,4 +32,41 @@ class PDVApp{
             exibirResultado();
         }
     }
+
+    ItemCompra lerDadosProduto(){
+        print('\n-- Adicionar Produto --');
+        print('\nNome do produto:');
+        String nome = stdin.readLineSync() ?? '';
+
+        double valor = 0;
+        bool valorValido = false;
+
+        while(!valorValido){
+            print('\nValor unitário:');
+            String input = stdin.readLineSync() ?? '0';
+            valorUnitario = double.parse(input.replaceAll(',','.'));
+            if(valorUnitario <= 0){
+                print('\nValor deve ser maior que zero.');
+            } else {
+                valorValido = true;
+            }
+        }
+
+        int quantidade = 0;
+        bool quantidadeValida = true;
+
+        while(!quantidadeValida){
+            print('\nQuantidade:');
+            String input = stdin.readLineSync() ?? '0';
+            quantidade = int.parse(input);
+            if(quantidade <= 0){
+                print('\nErro: A quantidade deve ser maior que zero.');
+            } else { 
+                quantidadeValida = true;
+            }
+        }
+
+        Produto produto = Produto(nome, valorUnitario);
+        return ItemCompra(produto, quantidade);
+    }
 }
