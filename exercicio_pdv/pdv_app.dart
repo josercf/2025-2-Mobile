@@ -1,4 +1,4 @@
-import 'dart.io';
+import 'dart:io';
 import 'produto.dart';
 import 'item_compra.dart';
 import 'carrinho_compra.dart';
@@ -33,7 +33,7 @@ class PDVApp{
         }
     }
 
-    ItemCompra lerDadosProduto(){
+    ItemCompra lerDadosCompra(){
         print('\n-- Adicionar Produto --');
         print('\nNome do produto:');
         String nome = stdin.readLineSync() ?? '';
@@ -44,8 +44,8 @@ class PDVApp{
         while(!valorValido){
             print('\nValor unitário:');
             String input = stdin.readLineSync() ?? '0';
-            valorUnitario = double.parse(input.replaceAll(',','.'));
-            if(valorUnitario <= 0){
+            valor = double.parse(input.replaceAll(',','.'));
+            if(valor <= 0){
                 print('\nValor deve ser maior que zero.');
             } else {
                 valorValido = true;
@@ -53,7 +53,7 @@ class PDVApp{
         }
 
         int quantidade = 0;
-        bool quantidadeValida = true;
+        bool quantidadeValida = false;
 
         while(!quantidadeValida){
             print('\nQuantidade:');
@@ -66,7 +66,7 @@ class PDVApp{
             }
         }
 
-        Produto produto = Produto(nome, valorUnitario);
+        Produto produto = Produto(nome, valor);
         return ItemCompra(produto, quantidade);
     }
 
